@@ -1,15 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
-import HomePage from 'pages/HomePage';
 import { Header, Link, Container } from './App.styled';
+import HomePage from 'pages/HomePage';
 import MoviesPage from 'pages/MoviesPage';
-import MovieDetailsPage from 'pages/MovieDetailsPage';
-import ReviewsPage from 'pages/ReviewsPage';
-import CastPage from 'pages/CastPage';
+import Cast from './Cast/Cast';
+import Reviews from './Reviews/Reviews';
+import MovieDetailsPage from './MovieDetails/MovieDetails';
 
 const KEY_API = '76d76dfd7b6e978a139e5b8adc9a8ee6';
 
 export const App = () => {
-  fetch('themoviedb.org');
   return (
     <Container>
       <Header>
@@ -24,8 +23,8 @@ export const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="movies" element={<MoviesPage />} />
         <Route path="movies/:movieId" element={<MovieDetailsPage />}>
-          <Route path="cast" element={<CastPage />} />
-          <Route path="reviews" element={<ReviewsPage />} />
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
         </Route>
       </Routes>
     </Container>
