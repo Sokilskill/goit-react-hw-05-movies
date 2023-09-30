@@ -27,7 +27,7 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-weight: 700;
+  font-weight: 500;
   color: #000;
   transition: color 300ms linear;
 

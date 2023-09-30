@@ -8,21 +8,13 @@ import {
   WrapperSingleCard,
 } from './MovieDetails.style';
 import { Container } from 'components/App.styled';
-
+import { options } from '../../serviceApi/themoviedbApi';
+console.log('options', options);
 const MovieDetailsPage = () => {
   const [singleCard, setSingleCard] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NmQ3NmRmZDdiNmU5NzhhMTM5ZTViOGFkYzlhOGVlNiIsInN1YiI6IjY1MTNlMjI4NzlhMWMzMDEzYWE2ZGY0ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OLljB3dWM0vxoQXzuHqabIWo1lgTHgs-WsVPw4nkuQw',
-      },
-    };
-
     fetch(
       `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
       options
@@ -60,7 +52,6 @@ const MovieDetailsPage = () => {
                 <Overview>Overview</Overview>
                 <p>{overview}</p>
                 <div>
-                  {' '}
                   <h3>Genres</h3>
                   <ul>
                     {genres.map(genre => (
