@@ -1,10 +1,15 @@
 import MovieList from 'components/MovieList/MovieList';
 import React, { useEffect, useState } from 'react';
 
+// const KEY_API = '76d76dfd7b6e978a139e5b8adc9a8ee6';
+
 const HomePage = () => {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(null);
 
   useEffect(() => {
+    if (list) {
+      return;
+    }
     const options = {
       method: 'GET',
       headers: {
@@ -14,27 +19,26 @@ const HomePage = () => {
       },
     };
     fetch(
-      'https://api.themoviedb.org/3/trending/all/day?language=en-US',
+      'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
       options
     )
       .then(response => response.json())
       .then(response => {
+        console.log('list', response);
+
         setList(response.results);
       })
       .catch(err => console.error(err));
-  }, []);
-
-  // console.log(
-  //   'map',
-  //   list.map(movie => movie.id)
-  // );
+  }, [list]);
 
   return (
     <main>
-      <div>Популярні фільми</div>
+      <h1 style={{ textAlign: 'center', fontSize: '32px', fontWeight: 700 }}>
+        Список популярних фільмів
+      </h1>
       <hr />
-      <MovieList dataList={list} />
-      <p>Список популярних фільмів</p>
+
+      {list && <MovieList dataList={list} />}
     </main>
   );
 };

@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
+import {
+  BackgroundImage,
+  Overview,
+  Title,
+  WrapperContent,
+  WrapperSingleCard,
+} from './MovieDetails.style';
+import { Container } from 'components/App.styled';
 
 const MovieDetailsPage = () => {
-  const [detailsMovie, setDetailsMovie] = useState(null);
+  const [singleCard, setSingleCard] = useState(null);
   const { movieId } = useParams();
 
-  console.log('movieId ===', movieId);
   useEffect(() => {
     const options = {
       method: 'GET',
@@ -22,46 +29,64 @@ const MovieDetailsPage = () => {
     )
       .then(response => response.json())
       .then(response => {
-        console.log(response);
-        setDetailsMovie([response]);
+        // console.log(response);
+        setSingleCard(response);
       })
       .catch(err => console.error(err));
   }, [movieId]);
+  console.log('singleCard', singleCard);
 
-  console.log('detailsMovie ===', detailsMovie);
+  const { poster_path, backdrop_path, title, vote_average, overview, genres } =
+    singleCard || {};
   return (
-    <>
-      <Link to="movies">Go back</Link>
-      <div>MovieDetailsPage</div>
+    <main>
+      <Container>
+        <Link to="movies">Go back</Link>
+      </Container>
 
-      <p>Сторінка детальної інформації про фільм </p>
-      <ul>
-        {detailsMovie &&
-          detailsMovie.map(item => (
-            <li key={item.id}>
-              <h3>{item.title}</h3>
+      {singleCard && (
+        <BackgroundImage backgroundimage={backdrop_path}>
+          <Container>
+            <WrapperSingleCard>
               <img
-                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                alt={item.title}
+                src={`https://image.tmdb.org/t/p/w300${poster_path}`}
+                alt={title}
+                width="300"
+                height="450"
               />
-              <p>User Score: %</p>
-              <h3>Overview</h3>
-              <p>{item.overview}</p>
-              <h3>Genres</h3>
-              <p>{item.genres.map(genre => genre.name)}</p>
-            </li>
-          ))}
-      </ul>
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
-      <Outlet />
-    </>
+              <WrapperContent>
+                <Title>{title}</Title>
+                <p>User Score: {Math.round(vote_average * 10)} %</p>
+                <Overview>Overview</Overview>
+                <p>{overview}</p>
+                <div>
+                  {' '}
+                  <h3>Genres</h3>
+                  <ul>
+                    {genres.map(genre => (
+                      <li key={genre.name}>
+                        <p>{genre.name}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </WrapperContent>
+            </WrapperSingleCard>
+          </Container>
+        </BackgroundImage>
+      )}
+      <Container>
+        <ul>
+          <li>
+            <Link to="cast">Cast</Link>
+          </li>
+          <li>
+            <Link to="reviews">Reviews</Link>
+          </li>
+        </ul>
+        <Outlet />
+      </Container>
+    </main>
   );
 };
 

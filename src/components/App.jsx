@@ -6,18 +6,18 @@ import Cast from './Cast/Cast';
 import Reviews from './Reviews/Reviews';
 import MovieDetailsPage from './MovieDetails/MovieDetails';
 
-const KEY_API = '76d76dfd7b6e978a139e5b8adc9a8ee6';
-
 export const App = () => {
   return (
-    <Container>
-      <Header>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="movies">Movies</Link>
-          <Link to="movies/:movieId"></Link>
-        </nav>
-      </Header>
+    <>
+      <Container>
+        <Header>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="movies">Movies</Link>
+            <Link to="movies/:movieId"></Link>
+          </nav>
+        </Header>
+      </Container>
 
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -27,6 +27,6 @@ export const App = () => {
           <Route path="reviews" element={<Reviews />} />
         </Route>
       </Routes>
-    </Container>
+    </>
   );
 };

@@ -21,13 +21,11 @@ const Cast = () => {
     )
       .then(response => response.json())
       .then(response => {
-        console.log('RESP', response.cast);
+        // console.log('RESP', response.cast);
         setCastList([response.cast]);
       })
       .catch(err => console.error(err));
   }, [movieId]);
-
-  console.log('castList', castList);
 
   return (
     <>
@@ -38,7 +36,7 @@ const Cast = () => {
           castList[0].map(actor => (
             <li key={actor.id}>
               <img
-                src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                src={`https://image.tmdb.org/t/p/w138_and_h175_face${actor.profile_path}`}
                 alt={actor.name}
               />
               <p>{actor.name}</p>
