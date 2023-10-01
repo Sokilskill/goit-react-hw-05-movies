@@ -3,15 +3,21 @@ import { Link } from 'react-router-dom';
 import { List, Li, WrapperImage, Title, Content } from './MovieList.style';
 
 const MovieList = ({ dataList }) => {
+  const defaultImg =
+    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   return (
     <List>
-      {dataList.map(movie => (
-        <Li key={movie.id}>
-          <Link to={`/movies/${movie.id}`}>
+      {dataList.map(({ id, title, poster_path }) => (
+        <Li key={id}>
+          <Link to={`/movies/${id}`}>
             <WrapperImage>
               <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={movie.title}
+                src={
+                  poster_path
+                    ? `https://image.tmdb.org/t/p/w200${poster_path}`
+                    : defaultImg
+                }
+                alt={title}
                 width="100%"
                 height="250"
               />
@@ -19,8 +25,8 @@ const MovieList = ({ dataList }) => {
           </Link>
 
           <Content>
-            <Link to={`/movies/${movie.id}`} title={movie.title}>
-              <Title>{movie.title}</Title>
+            <Link to={`/movies/${id}`} title={title}>
+              <Title>{title}</Title>
             </Link>
           </Content>
         </Li>

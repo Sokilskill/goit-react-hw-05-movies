@@ -40,6 +40,7 @@ const MovieDetailsPage = () => {
         <BackgroundImage backgroundimage={backdrop_path}>
           <Container>
             <WrapperSingleCard>
+              
               <img
                 src={`https://image.tmdb.org/t/p/w300${poster_path}`}
                 alt={title}
