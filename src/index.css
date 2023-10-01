@@ -3,14 +3,8 @@
 * {
   box-sizing: border-box;
 }
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: normal;
+
+:root {
   --textColor: rgb(240, 240, 240);
   --scrollerGrey: rgb(219, 219, 219);
   --lightGrey: rgb(227, 227, 227);
@@ -34,6 +28,16 @@ body {
   --accountRed: rgb(212, 2, 66);
   --imageBorderRadius: 8px;
   --maxPrimaryPageWidth: 1300px;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: normal;
+  background-color: rgba(var(--tmdbDarkBlue), 1);
 }
 
 code {

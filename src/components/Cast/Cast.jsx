@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { options } from 'serviceApi/themoviedbApi';
+import { Character, Li, List, Name } from './Cast.style';
 
 const Cast = () => {
   const [castList, setCastList] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NmQ3NmRmZDdiNmU5NzhhMTM5ZTViOGFkYzlhOGVlNiIsInN1YiI6IjY1MTNlMjI4NzlhMWMzMDEzYWE2ZGY0ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OLljB3dWM0vxoQXzuHqabIWo1lgTHgs-WsVPw4nkuQw',
-      },
-    };
-
+    if (!movieId) {
+      return;
+    }
     fetch(
       `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`,
       options
@@ -22,27 +18,27 @@ const Cast = () => {
       .then(response => response.json())
       .then(response => {
         // console.log('RESP', response.cast);
-        setCastList([response.cast]);
+        setCastList(response.cast);
       })
       .catch(err => console.error(err));
   }, [movieId]);
 
   return (
     <>
-      <div>CastPage</div>
-      <p>інформація про акторський склад </p>
-      <ul>
+      <List>
         {castList &&
-          castList[0].map(actor => (
-            <li key={actor.id}>
+          castList.map(({ id, profile_path, name, character }) => (
+            <Li key={id}>
               <img
-                src={`https://image.tmdb.org/t/p/w138_and_h175_face${actor.profile_path}`}
-                alt={actor.name}
+                src={`https://image.tmdb.org/t/p/w138_and_h175_face${profile_path}`}
+                alt={name}
+                width="138"
               />
-              <p>{actor.name}</p>
-            </li>
+              <Name>{name}</Name>
+              <Character>{character ? character : 'no info'}</Character>
+            </Li>
           ))}
-      </ul>
+      </List>
     </>
   );
 };
