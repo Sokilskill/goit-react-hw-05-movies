@@ -36,6 +36,20 @@ export const Title = styled.h2`
   font-weight: 700;
 `;
 
-export const Overview = styled.p`
-  font-weight: 500;
+export const WrapperScore = styled.div`
+  display: flex;
+  gap: 6px;
 `;
+export const Overview = styled.p`
+  font-weight: 600;
+`;
+
+export const SubTitle = styled.h3`
+  color: var(--accountRed);
+  &.percentege {
+    color: var(--textColor);
+  }
+`;
+
+export const Genres = styled.ul`
+margin-buttom`;

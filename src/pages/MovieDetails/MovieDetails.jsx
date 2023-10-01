@@ -2,9 +2,10 @@ import { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import {
   BackgroundImage,
-  Overview,
+  SubTitle,
   Title,
   WrapperContent,
+  WrapperScore,
   WrapperSingleCard,
 } from './MovieDetails.style';
 import { Container } from 'components/App.styled';
@@ -49,11 +50,16 @@ const MovieDetailsPage = () => {
               />
               <WrapperContent>
                 <Title>{title}</Title>
-                <p>User Score: {Math.round(vote_average * 10)} %</p>
-                <Overview>Overview</Overview>
+                <WrapperScore>
+                  <SubTitle>User Score:</SubTitle>
+                  <SubTitle className="percentege">
+                    {Math.round(vote_average * 10)} %
+                  </SubTitle>
+                </WrapperScore>
+                <SubTitle>Overview:</SubTitle>
                 <p>{overview}</p>
                 <div>
-                  <h3>Genres</h3>
+                  <SubTitle>Genres:</SubTitle>
                   <ul>
                     {genres.map(genre => (
                       <li key={genre.name}>
@@ -61,17 +67,22 @@ const MovieDetailsPage = () => {
                       </li>
                     ))}
                   </ul>
-
+                </div>
+                <div>
                   <ul>
                     <li>
-                      <Link to="cast" state={{ from: backLinkHref }}>
-                        Cast
-                      </Link>
+                      <SubTitle>
+                        <Link to="cast" state={{ from: backLinkHref }}>
+                          Cast
+                        </Link>
+                      </SubTitle>
                     </li>
                     <li>
-                      <Link to="reviews" state={{ from: backLinkHref }}>
-                        Reviews
-                      </Link>
+                      <SubTitle>
+                        <Link to="reviews" state={{ from: backLinkHref }}>
+                          Reviews
+                        </Link>
+                      </SubTitle>
                     </li>
                   </ul>
                 </div>
