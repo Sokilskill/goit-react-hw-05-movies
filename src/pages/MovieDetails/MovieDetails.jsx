@@ -16,8 +16,7 @@ const MovieDetailsPage = () => {
 
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
-  console.log('LOCATION', location);
-  console.log('backLinkHref', backLinkHref);
+
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,

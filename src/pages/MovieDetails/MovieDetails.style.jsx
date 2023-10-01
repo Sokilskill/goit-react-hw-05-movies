@@ -9,8 +9,10 @@ export const BackgroundImage = styled.div`
       rgba(31.5, 31.5, 31.5, 0.84) 50%,
       rgba(31.5, 31.5, 31.5, 0.84) 100%
     ),
-    url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${props =>
-      props.backgroundimage}');
+    ${props =>
+      props.backgroundimage
+        ? `url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${props.backgroundimage}')`
+        : 'none'};
 `;
 
 export const WrapperSingleCard = styled.div`
