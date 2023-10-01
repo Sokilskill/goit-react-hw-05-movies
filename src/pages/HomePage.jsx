@@ -19,7 +19,7 @@ const HomePage = () => {
     )
       .then(response => response.json())
       .then(response => {
-        console.log('list', response);
+        // console.log('list', response);
 
         setList(response.results);
       })

@@ -4,7 +4,7 @@ import HomePage from 'pages/HomePage';
 import MoviesPage from 'pages/MoviesPage';
 import Cast from './Cast/Cast';
 import Reviews from './Reviews/Reviews';
-import MovieDetailsPage from './MovieDetails/MovieDetails';
+import MovieDetailsPage from '../pages/MovieDetails/MovieDetails';
 import { Container } from './App.styled';
 import HeaderComponent from './Header/Header';
 

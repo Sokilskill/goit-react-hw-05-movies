@@ -9,7 +9,7 @@ import {
 } from './MovieDetails.style';
 import { Container } from 'components/App.styled';
 import { options } from '../../serviceApi/themoviedbApi';
-console.log('options', options);
+
 const MovieDetailsPage = () => {
   const [singleCard, setSingleCard] = useState(null);
   const { movieId } = useParams();
@@ -26,7 +26,7 @@ const MovieDetailsPage = () => {
       })
       .catch(err => console.error(err));
   }, [movieId]);
-  console.log('singleCard', singleCard);
+  // console.log('singleCard', singleCard);
 
   const { poster_path, backdrop_path, title, vote_average, overview, genres } =
     singleCard || {};
@@ -40,7 +40,6 @@ const MovieDetailsPage = () => {
         <BackgroundImage backgroundimage={backdrop_path}>
           <Container>
             <WrapperSingleCard>
-              
               <img
                 src={`https://image.tmdb.org/t/p/w300${poster_path}`}
                 alt={title}
@@ -61,6 +60,7 @@ const MovieDetailsPage = () => {
                       </li>
                     ))}
                   </ul>
+
                   <ul>
                     <li>
                       <Link to="cast">Cast</Link>
