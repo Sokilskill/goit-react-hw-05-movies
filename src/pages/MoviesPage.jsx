@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import MovieList from '../components/MovieList/MovieList';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { options } from '../serviceApi/themoviedbApi';
@@ -13,9 +13,6 @@ const MoviesPage = () => {
   const [errorActive, setErrorActive] = useState(false);
   const query = searchParams.get('query') ?? '';
   const queryToLowerCase = query.toLowerCase();
-
-  const location = useLocation();
-  console.log('location', location);
 
   useEffect(() => {
     if (queryToLowerCase === '') {
@@ -55,7 +52,6 @@ const MoviesPage = () => {
     setSearchParams(nextParams);
   };
 
-  console.log('SEARCH', searchList);
   return (
     <main>
       <Container>
@@ -72,7 +68,6 @@ const MoviesPage = () => {
               List of movies found for your search
               <Span>"{query}"</Span>
             </Title>
-
             <MovieList dataList={searchList} />
           </>
         )}

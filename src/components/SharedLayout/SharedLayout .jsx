@@ -5,12 +5,14 @@ import { Outlet } from 'react-router-dom';
 
 const SharedLayout = () => {
   return (
-    <Container>
-      <HeaderComponent />
+    <>
+      <Container>
+        <HeaderComponent />
+      </Container>
       <Suspense fallback={<div>Loading subpage...</div>}>
         <Outlet />
       </Suspense>
-    </Container>
+    </>
   );
 };
 

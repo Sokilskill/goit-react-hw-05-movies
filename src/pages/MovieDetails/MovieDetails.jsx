@@ -1,5 +1,5 @@
-import React, { Suspense, useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import {
   BackgroundImage,
   Overview,
@@ -14,6 +14,10 @@ const MovieDetailsPage = () => {
   const [singleCard, setSingleCard] = useState(null);
   const { movieId } = useParams();
 
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
+  console.log('LOCATION', location);
+  console.log('backLinkHref', backLinkHref);
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
@@ -21,19 +25,17 @@ const MovieDetailsPage = () => {
     )
       .then(response => response.json())
       .then(response => {
-        // console.log(response);
         setSingleCard(response);
       })
       .catch(err => console.error(err));
   }, [movieId]);
-  // console.log('singleCard', singleCard);
 
   const { poster_path, backdrop_path, title, vote_average, overview, genres } =
     singleCard || {};
   return (
     <main>
       <Container>
-        <Link to="movies">Go back</Link>
+        <Link to={backLinkHref}>Go back</Link>
       </Container>
 
       {singleCard && (
@@ -63,10 +65,14 @@ const MovieDetailsPage = () => {
 
                   <ul>
                     <li>
-                      <Link to="cast">Cast</Link>
+                      <Link to="cast" state={{ from: backLinkHref }}>
+                        Cast
+                      </Link>
                     </li>
                     <li>
-                      <Link to="reviews">Reviews</Link>
+                      <Link to="reviews" state={{ from: backLinkHref }}>
+                        Reviews
+                      </Link>
                     </li>
                   </ul>
                 </div>
