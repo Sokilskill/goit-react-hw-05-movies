@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { Input } from './SerchForm.style';
+import { Input, SearchButton, Form } from './SerchForm.style';
 
 const SearchForm = ({ onSubmit }) => {
   const [inputValue, setInputValue] = useState('');
@@ -16,17 +16,17 @@ const SearchForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handlerFormSubmit}>
+    <Form onSubmit={handlerFormSubmit}>
       <Input
         type="text"
         value={inputValue}
         placeholder="Search for a movie, tv show, person..."
         onChange={e => setInputValue(e.target.value)}
       />
-      <button type="submit" aria-label=" Search">
+      <SearchButton type="submit" aria-label=" Search">
         Search
-      </button>
-    </form>
+      </SearchButton>
+    </Form>
   );
 };
 
