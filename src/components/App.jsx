@@ -1,13 +1,17 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import HomePage from 'pages/HomePage';
-import MoviesPage from 'pages/MoviesPage';
-import Cast from './Cast/Cast';
-import Reviews from './Reviews/Reviews';
-import MovieDetailsPage from '../pages/MovieDetails/MovieDetails';
+import SharedLayout from './Sha/SharedLayout ';
 
 import 'react-toastify/dist/ReactToastify.min.css';
-import SharedLayout from './Sha/SharedLayout ';
+
+const HomePage = lazy(() => import('pages/HomePage'));
+const MoviesPage = lazy(() => import('pages/MoviesPage'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
+const MovieDetailsPage = lazy(() =>
+  import('../pages/MovieDetails/MovieDetails')
+);
 
 export const App = () => {
   return (

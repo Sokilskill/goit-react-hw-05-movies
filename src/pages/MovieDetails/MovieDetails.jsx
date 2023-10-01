@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import {
   BackgroundImage,
@@ -76,7 +76,9 @@ const MovieDetailsPage = () => {
         </BackgroundImage>
       )}
       <Container>
-        <Outlet />
+        <Suspense fallback={<p>Loading...</p>}>
+          <Outlet />
+        </Suspense>
       </Container>
     </main>
   );

@@ -23,7 +23,7 @@ const Reviews = () => {
   console.log('reviewsList', reviewsList);
   return (
     <>
-      {reviewsList ? (
+      {reviewsList && reviewsList.length !== 0 ? (
         <ul>
           {reviewsList.map(({ id, author, content }) => (
             <li key={id}>
