@@ -17,12 +17,14 @@ const Cast = () => {
     )
       .then(response => response.json())
       .then(response => {
-        // console.log('RESP', response.cast);
+        console.log('RESP', response.cast);
         setCastList(response.cast);
       })
       .catch(err => console.error(err));
   }, [movieId]);
 
+  const defaultImg =
+    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   return (
     <>
       <List>
@@ -30,9 +32,14 @@ const Cast = () => {
           castList.map(({ id, profile_path, name, character }) => (
             <Li key={id}>
               <img
-                src={`https://image.tmdb.org/t/p/w138_and_h175_face${profile_path}`}
+                src={
+                  profile_path
+                    ? `https://image.tmdb.org/t/p/w138_and_h175_face${profile_path}`
+                    : defaultImg
+                }
                 alt={name}
                 width="138"
+                height={175}
               />
               <Name>{name}</Name>
               <Character>{character ? character : 'no info'}</Character>

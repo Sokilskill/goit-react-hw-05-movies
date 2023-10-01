@@ -26,7 +26,6 @@ export const WrapperContent = styled.div`
   flex-direction: column;
   gap: 20px;
   padding: 24px 0;
-  outline: solid 3px green;
   color: var(--textColor);
 `;
 

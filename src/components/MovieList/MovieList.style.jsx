@@ -5,7 +5,7 @@ export const List = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   list-style: none;
-  padding: 0;
+  padding: 30px 0;
 `;
 export const Li = styled.li`
   width: calc(20% - 20px);

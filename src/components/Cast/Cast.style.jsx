@@ -21,9 +21,10 @@ export const Li = styled.li`
 `;
 export const Name = styled.p`
   font-weight: 700;
-  padding-top: 10px;
+  padding: 10px;
 `;
 
 export const Character = styled.p`
   font-size: 14px;
+  padding: 0 10px;
 `;
