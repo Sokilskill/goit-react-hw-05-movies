@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link, Header } from './Header.style';
-import { Container } from 'components/App.styled';
 
 const HeaderComponent = () => {
   return (
     <Header>
-      <Container>
+      <div className="container">
         <nav>
           <ul>
             <li>
@@ -16,7 +15,7 @@ const HeaderComponent = () => {
             </li>
           </ul>
         </nav>
-      </Container>
+      </div>
     </Header>
   );
 };

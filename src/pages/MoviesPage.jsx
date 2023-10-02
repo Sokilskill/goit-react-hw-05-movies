@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router-dom';
 import MovieList from '../components/MovieList/MovieList';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { options } from '../serviceApi/themoviedbApi';
-import { Container } from 'components/App.styled';
 import { toast } from 'react-toastify';
 import { Span, Title } from 'components/SearchForm/SerchForm.style';
 
@@ -54,7 +53,7 @@ const MoviesPage = () => {
 
   return (
     <main>
-      <Container>
+      <div className="container">
         <SearchForm onSubmit={updateQueryString} />
         {errorActive && (
           <Title>
@@ -71,7 +70,7 @@ const MoviesPage = () => {
             <MovieList dataList={searchList} />
           </>
         )}
-      </Container>
+      </div>
     </main>
   );
 };

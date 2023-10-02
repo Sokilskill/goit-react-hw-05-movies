@@ -1,9 +1,7 @@
-import { Container } from 'components/App.styled';
 import MovieList from 'components/MovieList/MovieList';
 import React, { useEffect, useState } from 'react';
 import { options } from '../serviceApi/themoviedbApi';
 import { toast } from 'react-toastify';
-// const KEY_API = '76d76dfd7b6e978a139e5b8adc9a8ee6';
 
 const HomePage = () => {
   const [list, setList] = useState(null);
@@ -28,13 +26,17 @@ const HomePage = () => {
 
   return (
     <main>
-      <Container>
-        <h1 style={{ textAlign: 'center', fontSize: '32px', fontWeight: 700 }}>
-          Trending Movies
-        </h1>
-        <hr />
-        {list && <MovieList dataList={list} />}
-      </Container>
+      <section>
+        <div className="container">
+          <h1
+            style={{ textAlign: 'center', fontSize: '32px', fontWeight: 700 }}
+          >
+            Trending Movies
+          </h1>
+          <hr />
+          {list && <MovieList dataList={list} />}
+        </div>
+      </section>
     </main>
   );
 };

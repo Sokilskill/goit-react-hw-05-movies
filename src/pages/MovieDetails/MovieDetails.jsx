@@ -8,7 +8,7 @@ import {
   WrapperScore,
   WrapperSingleCard,
 } from './MovieDetails.style';
-import { Container } from 'components/App.styled';
+
 import { options } from '../../serviceApi/themoviedbApi';
 
 const MovieDetailsPage = () => {
@@ -46,13 +46,13 @@ const MovieDetailsPage = () => {
   } = dataSingleCard || {};
   return (
     <main>
-      <Container>
+      <div className="container">
         <Link to={backLinkHref}>Go back</Link>
-      </Container>
+      </div>
 
       {dataSingleCard && (
         <BackgroundImage backgroundimage={backdrop_path}>
-          <Container>
+          <div className="container">
             <WrapperSingleCard>
               <img
                 src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -102,14 +102,15 @@ const MovieDetailsPage = () => {
                 </div>
               </WrapperContent>
             </WrapperSingleCard>
-          </Container>
+          </div>
         </BackgroundImage>
       )}
-      <Container>
+
+      <div className="container">
         <Suspense fallback={<p>Loading...</p>}>
           <Outlet />
         </Suspense>
-      </Container>
+      </div>
     </main>
   );
 };

@@ -22,7 +22,7 @@ const Reviews = () => {
 
   console.log('reviewsList', reviewsList);
   return (
-    <>
+    <section>
       {reviewsList && reviewsList.length !== 0 ? (
         <ul>
           {reviewsList.map(({ id, author, content }) => (
@@ -37,7 +37,7 @@ const Reviews = () => {
       ) : (
         <Content>No Reviews</Content>
       )}
-    </>
+    </section>
   );
 };
 

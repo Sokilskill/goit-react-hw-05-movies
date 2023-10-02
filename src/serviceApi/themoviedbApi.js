@@ -11,3 +11,5 @@ export const options = {
 //   .then(response => response.json())
 //   .then(response => console.log(response.results))
 //   .catch(err => console.error(err));
+
+// const KEY_API = '76d76dfd7b6e978a139e5b8adc9a8ee6';
