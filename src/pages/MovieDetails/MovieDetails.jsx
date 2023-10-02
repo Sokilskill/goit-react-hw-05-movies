@@ -12,7 +12,7 @@ import { Container } from 'components/App.styled';
 import { options } from '../../serviceApi/themoviedbApi';
 
 const MovieDetailsPage = () => {
-  const [singleCard, setSingleCard] = useState(null);
+  const [dataSingleCard, setDataSingleCard] = useState(null);
   const { movieId } = useParams();
 
   const location = useLocation();
@@ -25,31 +25,46 @@ const MovieDetailsPage = () => {
     )
       .then(response => response.json())
       .then(response => {
-        setSingleCard(response);
+        setDataSingleCard(response);
       })
       .catch(err => console.error(err));
   }, [movieId]);
 
-  const { poster_path, backdrop_path, title, vote_average, overview, genres } =
-    singleCard || {};
+  console.log('dataSingeCard', dataSingleCard);
+  const getYearFromDate = dateString => {
+    const date = new Date(dateString);
+    return date.getFullYear();
+  };
+
+  const {
+    poster_path,
+    backdrop_path,
+    release_date,
+    title,
+    vote_average,
+    overview,
+    genres,
+  } = dataSingleCard || {};
   return (
     <main>
       <Container>
         <Link to={backLinkHref}>Go back</Link>
       </Container>
 
-      {singleCard && (
+      {dataSingleCard && (
         <BackgroundImage backgroundimage={backdrop_path}>
           <Container>
             <WrapperSingleCard>
               <img
-                src={`https://image.tmdb.org/t/p/w300${poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                 alt={title}
                 width="300"
                 height="450"
               />
               <WrapperContent>
-                <Title>{title}</Title>
+                <Title>
+                  {title} ({getYearFromDate(release_date)})
+                </Title>
                 <WrapperScore>
                   <SubTitle>User Score:</SubTitle>
                   <SubTitle className="percentege">
