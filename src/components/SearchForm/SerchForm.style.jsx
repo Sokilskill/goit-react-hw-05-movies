@@ -5,14 +5,18 @@ export const Form = styled.form`
 `;
 export const Input = styled.input`
   width: 100%;
-  height: 44px;
   font-family: Arial, sans-serif;
   font-style: italic;
-  font-size: 100%;
+  font-size: 16px;
   color: #acacac;
   padding: 10px 30px;
   border-radius: 8px;
   margin-bottom: 30px;
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    font-size: 14px;
+  }
 `;
 
 export const Title = styled.h3`

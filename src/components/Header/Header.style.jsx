@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Header = styled.header`
-  padding: 8px 0;
-  margin-bottom: 16px;
   border-bottom: 1px solid black;
   background-color: var(--tmdbDarkBlue);
 
@@ -15,6 +13,10 @@ export const Header = styled.header`
   }
   li {
     padding: 20px 0;
+
+    @media (max-width: 480px) {
+      padding: 10px 0;
+    }
   }
 `;
 

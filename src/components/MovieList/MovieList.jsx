@@ -20,7 +20,6 @@ const MovieList = ({ dataList }) => {
                 }
                 alt={title}
                 width="100%"
-                // height="400"
               />
             </WrapperImage>
           </Link>
