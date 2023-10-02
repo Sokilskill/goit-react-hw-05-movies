@@ -3,7 +3,7 @@ import { List, Li, WrapperImage, Title, Content } from './MovieList.style';
 
 const MovieList = ({ dataList }) => {
   const location = useLocation();
-
+  console.log('dataList', dataList);
   const defaultImg =
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   return (
@@ -15,12 +15,12 @@ const MovieList = ({ dataList }) => {
               <img
                 src={
                   poster_path
-                    ? `https://image.tmdb.org/t/p/w200${poster_path}`
+                    ? `https://image.tmdb.org/t/p/w500${poster_path}`
                     : defaultImg
                 }
                 alt={title}
                 width="100%"
-                height="250"
+                // height="400"
               />
             </WrapperImage>
           </Link>
@@ -28,6 +28,7 @@ const MovieList = ({ dataList }) => {
           <Content>
             <Link to={`/movies/${id}`} title={title}>
               <Title>{title}</Title>
+              <p>{}</p>
             </Link>
           </Content>
         </Li>

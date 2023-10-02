@@ -9,7 +9,7 @@
   --scrollerGrey: rgb(219, 219, 219);
   --lightGrey: rgb(227, 227, 227);
   --darkerGrey: rgb(200, 200, 200);
-  --tmdbDarkBlue: rgb(3, 37, 65);
+  --tmdbDarkBlue: rgba(3, 37, 65, 0.7);
   --tmdbLightBlue: rgb(1, 180, 228);
   --tmdbLighterGreen: rgb(192, 254, 207);
   --tmdbLightGreen: rgb(30, 213, 169);
@@ -27,7 +27,9 @@
   --accountYellow: rgb(210, 144, 1);
   --accountRed: rgb(212, 2, 66);
   --imageBorderRadius: 8px;
-  --maxPrimaryPageWidth: 1300px;
+  --maxPrimaryPageWidth: 1400px;
+  --numberOfDiscoverColumns: 4;
+  --discoverColumnPadding: 30px;
 }
 body {
   margin: 0;
@@ -62,4 +64,6 @@ a:hover {
 
 h3 {
   font-weight: 600;
+}
+header > ul {
 }

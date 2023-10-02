@@ -30,7 +30,6 @@ const MovieDetailsPage = () => {
       .catch(err => console.error(err));
   }, [movieId]);
 
-  console.log('dataSingeCard', dataSingleCard);
   const getYearFromDate = dateString => {
     const date = new Date(dateString);
     return date.getFullYear();

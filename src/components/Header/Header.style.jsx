@@ -1,17 +1,20 @@
 import { NavLink } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 export const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
   padding: 8px 0;
   margin-bottom: 16px;
   border-bottom: 1px solid black;
+  background-color: var(--tmdbDarkBlue);
 
-  > nav {
+  ul {
     display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  li {
+    padding: 20px 0;
   }
 `;
 
@@ -27,3 +30,5 @@ export const Link = styled(NavLink)`
     background-color: orangered;
   }
 `;
+
+//

@@ -1,13 +1,22 @@
 import React from 'react';
-import { Header, Link } from './Header.style';
+import { Link, Header } from './Header.style';
+import { Container } from 'components/App.styled';
 
 const HeaderComponent = () => {
   return (
     <Header>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="movies">Movies</Link>
-      </nav>
+      <Container>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="movies">Movies</Link>
+            </li>
+          </ul>
+        </nav>
+      </Container>
     </Header>
   );
 };
