@@ -50,6 +50,7 @@ a {
   text-decoration: none;
   display: block;
   color: var(--accountBlue);
+  transition: color 200ms linear;
 }
 a:hover {
   color: var(--accountLightBlue);
