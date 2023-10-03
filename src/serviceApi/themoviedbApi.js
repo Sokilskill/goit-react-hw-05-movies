@@ -16,7 +16,7 @@ export const fetchApi = async query => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.results;
+    return data;
   } catch (error) {
     throw error;
   }

@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { options } from 'serviceApi/themoviedbApi';
+import { fetchApi, options } from 'serviceApi/themoviedbApi';
 import { Character, Li, List, Name } from './Cast.style';
 
 const Cast = () => {
   const [castList, setCastList] = useState(null);
   const { movieId } = useParams();
 
+  const url = `/3/movie/${movieId}/credits?language=en-US`;
   useEffect(() => {
     if (!movieId) {
       return;
     }
-    fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`,
-      options
-    )
-      .then(response => response.json())
-      .then(response => {
-        console.log('RESP', response.cast);
-        setCastList(response.cast);
-      })
-      .catch(err => console.error(err));
-  }, [movieId]);
+    const searchCast = async () => {
+      try {
+        const { cast } = await fetchApi(url);
+        setCastList(cast);
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+    searchCast();
+  }, [movieId, url]);
 
   const defaultImg =
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
@@ -39,7 +39,7 @@ const Cast = () => {
                 }
                 alt={name}
                 width="138"
-                height={175}
+                height="175"
               />
               <Name>{name}</Name>
               <Character>{character ? character : 'no info'}</Character>

@@ -24,7 +24,7 @@ const MoviesPage = () => {
         setData(null); //очищення списку
         setErrorActive(false);
 
-        const results = await fetchApi(url);
+        const { results } = await fetchApi(url);
         if (results.length === 0) {
           setErrorActive(true);
           throw new Error('Not found');

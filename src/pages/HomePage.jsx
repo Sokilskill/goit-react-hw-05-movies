@@ -15,8 +15,8 @@ const HomePage = () => {
 
     const searchPopularMovie = async () => {
       try {
-        const result = await fetchApi(url);
-        setDataList(result);
+        const { results } = await fetchApi(url);
+        setDataList(results);
       } catch (error) {
         toast.error(`${error}`);
       }

@@ -3,7 +3,7 @@ import { List, Li, WrapperImage, Title, Content } from './MovieList.style';
 
 const MovieList = ({ dataList }) => {
   const location = useLocation();
-  console.log('dataList', dataList);
+
   const defaultImg =
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   return (
