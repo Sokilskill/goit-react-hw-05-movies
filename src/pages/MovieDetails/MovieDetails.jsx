@@ -9,7 +9,7 @@ import {
   WrapperSingleCard,
 } from './MovieDetails.style';
 
-import { options } from '../../serviceApi/themoviedbApi';
+import { fetchApi } from '../../serviceApi/themoviedbApi';
 
 const MovieDetailsPage = () => {
   const [dataSingleCard, setDataSingleCard] = useState(null);
@@ -18,17 +18,19 @@ const MovieDetailsPage = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
 
+  const url = `/3/movie/${movieId}?language=en-US`;
+
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
-      options
-    )
-      .then(response => response.json())
-      .then(response => {
-        setDataSingleCard(response);
-      })
-      .catch(err => console.error(err));
-  }, [movieId]);
+    try {
+      const searchSingleCard = async () => {
+        const data = await fetchApi(url);
+        setDataSingleCard(data);
+      };
+      searchSingleCard();
+    } catch (error) {
+      console.log('error', error);
+    }
+  }, [movieId, url]);
 
   const getYearFromDate = dateString => {
     const date = new Date(dateString);
@@ -44,6 +46,7 @@ const MovieDetailsPage = () => {
     overview,
     genres,
   } = dataSingleCard || {};
+
   return (
     <main>
       <div className="container">

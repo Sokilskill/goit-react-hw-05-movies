@@ -1,6 +1,7 @@
 // const KEY_API = '76d76dfd7b6e978a139e5b8adc9a8ee6';
 const BASE_URL = 'https://api.themoviedb.org';
-export const options = {
+
+const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',

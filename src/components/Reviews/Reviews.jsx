@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { options } from 'serviceApi/themoviedbApi';
+import { fetchApi } from 'serviceApi/themoviedbApi';
 import { Author, Content } from './Reviews.styled';
 const Reviews = () => {
   const [reviewsList, setReviewsList] = useState(null);
-
   const { movieId } = useParams();
-
+  const url = `/3/movie/${movieId}/reviews?language=en-US&page=1`;
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/reviews?language=en-US&page=1`,
-      options
-    )
-      .then(response => response.json())
-      .then(response => {
-        console.log(response);
-        setReviewsList(response.results);
-      })
-      .catch(err => console.error(err));
-  }, [movieId]);
+    const searchReview = async () => {
+      try {
+        const { results } = await fetchApi(url);
+        setReviewsList(results);
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+    searchReview();
+  }, [movieId, url]);
 
-  console.log('reviewsList', reviewsList);
   return (
     <section>
       {reviewsList && reviewsList.length !== 0 ? (
@@ -28,7 +25,6 @@ const Reviews = () => {
           {reviewsList.map(({ id, author, content }) => (
             <li key={id}>
               <Author>Author: {author}</Author>
-
               <Content>{content}</Content>
               <hr />
             </li>

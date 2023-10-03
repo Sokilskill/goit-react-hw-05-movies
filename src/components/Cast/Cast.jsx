@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchApi, options } from 'serviceApi/themoviedbApi';
+import { fetchApi } from 'serviceApi/themoviedbApi';
 import { Character, Li, List, Name } from './Cast.style';
 
 const Cast = () => {
