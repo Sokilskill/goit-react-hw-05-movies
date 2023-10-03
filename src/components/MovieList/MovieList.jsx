@@ -10,8 +10,8 @@ const MovieList = ({ dataList }) => {
     <List>
       {dataList.map(({ id, title, poster_path }) => (
         <Li key={id}>
-          <Link to={`/movies/${id}`} state={{ from: location }}>
-            <WrapperImage>
+          <WrapperImage>
+            <Link to={`/movies/${id}`} state={{ from: location }}>
               <img
                 src={
                   poster_path
@@ -21,8 +21,8 @@ const MovieList = ({ dataList }) => {
                 alt={title}
                 width="100%"
               />
-            </WrapperImage>
-          </Link>
+            </Link>
+          </WrapperImage>
 
           <Content>
             <Link to={`/movies/${id}`} title={title}>

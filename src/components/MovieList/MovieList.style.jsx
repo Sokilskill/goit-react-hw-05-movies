@@ -10,6 +10,8 @@ export const List = styled.ul`
   padding: 30px 0;
 `;
 export const Li = styled.li`
+  display: flex;
+  flex-direction: column;
   flex-basis: calc((100% - 16px * 4) / 5);
   border: 1px solid #e3e3e3;
   border-radius: var(--imageBorderRadius);
@@ -32,9 +34,10 @@ export const Li = styled.li`
 
 export const WrapperImage = styled.div`
   width: 100%;
-  height: 70%;
+  // min-height: 70%;
   border-radius: 8px 8px 0 0;
-  > img{
+
+   img{
     display: block;
     width: 100%;
     height: 100%;
