@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import MovieList from '../components/MovieList/MovieList';
 import SearchForm from 'components/SearchForm/SearchForm';
-import { searchQuery } from '../serviceApi/themoviedbApi';
+import { fetchApi } from '../serviceApi/themoviedbApi';
 import { toast } from 'react-toastify';
 import { Span, Title } from 'components/SearchForm/SerchForm.style';
 
@@ -12,21 +12,19 @@ const MoviesPage = () => {
   const [errorActive, setErrorActive] = useState(false);
   const query = searchParams.get('query') ?? '';
   const queryToLowerCase = query.toLowerCase();
+  const url = `/3/search/movie?query=${queryToLowerCase}&include_adult=false&language=en-US&page=1`;
 
   useEffect(() => {
-    if (queryToLowerCase === '') {
+    if (query === '') {
       return;
     }
-
     // Запит на бекенд
-    const search = async () => {
+    const searchQuery = async () => {
       try {
-        //очищення списку
-        setData(null);
-
+        setData(null); //очищення списку
         setErrorActive(false);
 
-        const results = await searchQuery(queryToLowerCase);
+        const results = await fetchApi(url);
         if (results.length === 0) {
           setErrorActive(true);
           throw new Error('Not found');
@@ -37,8 +35,8 @@ const MoviesPage = () => {
         toast.error(`${error}`);
       }
     };
-    search();
-  }, [queryToLowerCase]);
+    searchQuery();
+  }, [query, url]);
 
   const updateQueryString = inputValue => {
     const nextParams = inputValue !== '' ? { query: inputValue } : {};

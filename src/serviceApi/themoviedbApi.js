@@ -1,5 +1,5 @@
 // const KEY_API = '76d76dfd7b6e978a139e5b8adc9a8ee6';
-
+const BASE_URL = 'https://api.themoviedb.org';
 export const options = {
   method: 'GET',
   headers: {
@@ -9,12 +9,9 @@ export const options = {
   },
 };
 
-export const searchQuery = async query => {
+export const fetchApi = async query => {
   try {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
-      options
-    );
+    const response = await fetch(`${BASE_URL}${query}`, options);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }

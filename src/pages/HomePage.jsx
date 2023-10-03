@@ -1,28 +1,28 @@
 import MovieList from 'components/MovieList/MovieList';
 import React, { useEffect, useState } from 'react';
-import { options } from '../serviceApi/themoviedbApi';
+import { fetchApi } from '../serviceApi/themoviedbApi';
 import { toast } from 'react-toastify';
 
 const HomePage = () => {
-  const [list, setList] = useState(null);
+  const [dataList, setDataList] = useState(null);
+
+  const url = '/3/trending/movie/day?language=en-US';
 
   useEffect(() => {
-    if (list) {
+    if (dataList) {
       return;
     }
 
-    fetch(
-      'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
-      options
-    )
-      .then(response => response.json())
-      .then(response => {
-        // console.log('list', response);
-
-        setList(response.results);
-      })
-      .catch(err => toast.error(err));
-  }, [list]);
+    const searchPopularMovie = async () => {
+      try {
+        const result = await fetchApi(url);
+        setDataList(result);
+      } catch (error) {
+        toast.error(`${error}`);
+      }
+    };
+    searchPopularMovie();
+  }, [dataList]);
 
   return (
     <main>
@@ -34,7 +34,7 @@ const HomePage = () => {
             Trending Movies
           </h1>
           <hr />
-          {list && <MovieList dataList={list} />}
+          {dataList && <MovieList dataList={dataList} />}
         </div>
       </section>
     </main>
