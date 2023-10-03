@@ -10,9 +10,11 @@ const MoviesPage = () => {
   const [data, setData] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const [errorActive, setErrorActive] = useState(false);
+
   const query = searchParams.get('query') ?? '';
   const queryToLowerCase = query.toLowerCase();
   const url = `/3/search/movie?query=${queryToLowerCase}&include_adult=false&language=en-US&page=1`;
+  console.log('query', `"${query}"`);
 
   useEffect(() => {
     if (query === '') {

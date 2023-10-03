@@ -6,7 +6,12 @@ const Reviews = () => {
   const [reviewsList, setReviewsList] = useState(null);
   const { movieId } = useParams();
   const url = `/3/movie/${movieId}/reviews?language=en-US&page=1`;
+
   useEffect(() => {
+    if (!movieId) {
+      return;
+    }
+
     const searchReview = async () => {
       try {
         const { results } = await fetchApi(url);

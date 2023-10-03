@@ -1,7 +1,9 @@
-import MovieList from 'components/MovieList/MovieList';
-import React, { useEffect, useState } from 'react';
+// import MovieList from 'components/MovieList/MovieList';
+import React, { Suspense, useEffect, useState } from 'react';
 import { fetchApi } from '../serviceApi/themoviedbApi';
 import { toast } from 'react-toastify';
+
+const MovieList = React.lazy(() => import('../components/MovieList/MovieList'));
 
 const HomePage = () => {
   const [dataList, setDataList] = useState(null);
@@ -34,7 +36,9 @@ const HomePage = () => {
             Trending Movies
           </h1>
           <hr />
-          {dataList && <MovieList dataList={dataList} />}
+          <Suspense fallback={<p>STAY HERE!</p>}>
+            {dataList && <MovieList dataList={dataList} />}
+          </Suspense>
         </div>
       </section>
     </main>

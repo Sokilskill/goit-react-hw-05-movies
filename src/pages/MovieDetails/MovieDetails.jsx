@@ -1,6 +1,8 @@
 import { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { fetchApi } from '../../serviceApi/themoviedbApi';
 import {
+  BackToList,
   BackgroundImage,
   SubTitle,
   Title,
@@ -8,8 +10,6 @@ import {
   WrapperScore,
   WrapperSingleCard,
 } from './MovieDetails.style';
-
-import { fetchApi } from '../../serviceApi/themoviedbApi';
 
 const MovieDetailsPage = () => {
   const [dataSingleCard, setDataSingleCard] = useState(null);
@@ -49,71 +49,75 @@ const MovieDetailsPage = () => {
 
   return (
     <main>
-      <div className="container">
-        <Link to={backLinkHref}>Go back</Link>
-      </div>
+      <BackToList className="container">
+        <Link to={backLinkHref}>Back to the list of movies</Link>
+      </BackToList>
 
-      {dataSingleCard && (
-        <BackgroundImage backgroundimage={backdrop_path}>
-          <div className="container">
-            <WrapperSingleCard>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                alt={title}
-                width="300"
-                height="450"
-              />
-              <WrapperContent>
-                <Title>
-                  {title} ({getYearFromDate(release_date)})
-                </Title>
-                <WrapperScore>
-                  <SubTitle>User Score:</SubTitle>
-                  <SubTitle className="percentege">
-                    {Math.round(vote_average * 10)} %
-                  </SubTitle>
-                </WrapperScore>
-                <SubTitle>Overview:</SubTitle>
-                <p>{overview}</p>
-                <div>
-                  <SubTitle>Genres:</SubTitle>
-                  <ul>
-                    {genres.map(genre => (
-                      <li key={genre.name}>
-                        <p>{genre.name}</p>
+      <section>
+        {dataSingleCard && (
+          <BackgroundImage backgroundimage={backdrop_path}>
+            <div className="container">
+              <WrapperSingleCard>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                  alt={title}
+                  width="300"
+                  height="450"
+                />
+                <WrapperContent>
+                  <Title>
+                    {title} ({getYearFromDate(release_date)})
+                  </Title>
+                  <WrapperScore>
+                    <SubTitle>User Score:</SubTitle>
+                    <SubTitle className="percentege">
+                      {Math.round(vote_average * 10)} %
+                    </SubTitle>
+                  </WrapperScore>
+                  <SubTitle>Overview:</SubTitle>
+                  <p>{overview}</p>
+                  <div>
+                    <SubTitle>Genres:</SubTitle>
+                    <ul>
+                      {genres.map(genre => (
+                        <li key={genre.name}>
+                          <p>{genre.name}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>
+                        <SubTitle>
+                          <Link to="cast" state={{ from: backLinkHref }}>
+                            Cast
+                          </Link>
+                        </SubTitle>
                       </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <ul>
-                    <li>
-                      <SubTitle>
-                        <Link to="cast" state={{ from: backLinkHref }}>
-                          Cast
-                        </Link>
-                      </SubTitle>
-                    </li>
-                    <li>
-                      <SubTitle>
-                        <Link to="reviews" state={{ from: backLinkHref }}>
-                          Reviews
-                        </Link>
-                      </SubTitle>
-                    </li>
-                  </ul>
-                </div>
-              </WrapperContent>
-            </WrapperSingleCard>
-          </div>
-        </BackgroundImage>
-      )}
+                      <li>
+                        <SubTitle>
+                          <Link to="reviews" state={{ from: backLinkHref }}>
+                            Reviews
+                          </Link>
+                        </SubTitle>
+                      </li>
+                    </ul>
+                  </div>
+                </WrapperContent>
+              </WrapperSingleCard>
+            </div>
+          </BackgroundImage>
+        )}
+      </section>
 
-      <div className="container">
-        <Suspense fallback={<p>Loading...</p>}>
-          <Outlet />
-        </Suspense>
-      </div>
+      <section>
+        <div className="container">
+          <Suspense fallback={<p>Loading...</p>}>
+            <Outlet />
+          </Suspense>
+        </div>
+      </section>
     </main>
   );
 };

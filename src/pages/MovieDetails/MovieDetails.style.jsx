@@ -1,5 +1,22 @@
 import styled from 'styled-components';
 
+export const BackToList = styled.div`
+  padding: 20px;
+  > a {
+    display: inline-block;
+    padding: 10px;
+    border-radius: var(--imageBorderRadius);
+    background-color: var(--tmdbDarkBlue);
+    color: var(--textColor);
+    transition: all 200ms linear;
+
+    &:hover {
+      background-color: var(--tmdbLightBlue);
+      color: var(--tmdbDarkBlue);
+    }
+  }
+`;
+
 export const BackgroundImage = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
