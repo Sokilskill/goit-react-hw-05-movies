@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-import { fetchApi } from '../../serviceApi/themoviedbApi';
+import { fetchSingleCardData } from '../../serviceApi/themoviedbApi';
 import {
   BackToList,
   BackgroundImage,
@@ -18,19 +18,17 @@ const MovieDetailsPage = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
 
-  const url = `/3/movie/${movieId}?language=en-US`;
-
   useEffect(() => {
     try {
       const searchSingleCard = async () => {
-        const data = await fetchApi(url);
+        const data = await fetchSingleCardData(movieId);
         setDataSingleCard(data);
       };
       searchSingleCard();
     } catch (error) {
       console.log('error', error);
     }
-  }, [movieId, url]);
+  }, [movieId]);
 
   const getYearFromDate = dateString => {
     const date = new Date(dateString);

@@ -1,14 +1,12 @@
 // import MovieList from 'components/MovieList/MovieList';
 import React, { Suspense, useEffect, useState } from 'react';
-import { fetchApi } from '../serviceApi/themoviedbApi';
+import { fetchPopularMovies } from '../serviceApi/themoviedbApi';
 import { toast } from 'react-toastify';
 
 const MovieList = React.lazy(() => import('../components/MovieList/MovieList'));
 
 const HomePage = () => {
   const [dataList, setDataList] = useState(null);
-
-  const url = '/3/trending/movie/day?language=en-US';
 
   useEffect(() => {
     if (dataList) {
@@ -17,7 +15,7 @@ const HomePage = () => {
 
     const searchPopularMovie = async () => {
       try {
-        const { results } = await fetchApi(url);
+        const { results } = await fetchPopularMovies();
         setDataList(results);
       } catch (error) {
         toast.error(`${error}`);

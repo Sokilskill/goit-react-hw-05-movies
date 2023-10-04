@@ -22,3 +22,19 @@ export const fetchApi = async query => {
     throw error;
   }
 };
+export const fetchSingleCardData = async id =>
+  await fetchApi(`/3/movie/${id}?language=en-US`);
+
+export const fetchPopularMovies = async () =>
+  await fetchApi('/3/trending/movie/day?language=en-US');
+
+export const fetchSearchQuery = async query =>
+  await fetchApi(
+    `/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`
+  );
+
+export const fetchCast = async id =>
+  await fetchApi(`/3/movie/${id}/credits?language=en-US`);
+
+export const fetchReviews = async id =>
+  await fetchApi(`/3/movie/${id}/reviews?language=en-US&page=1`);

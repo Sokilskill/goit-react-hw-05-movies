@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import MovieList from '../components/MovieList/MovieList';
 import SearchForm from 'components/SearchForm/SearchForm';
-import { fetchApi } from '../serviceApi/themoviedbApi';
+import { fetchSearchQuery } from '../serviceApi/themoviedbApi';
 import { toast } from 'react-toastify';
 import { Span, Title } from 'components/SearchForm/SerchForm.style';
 
@@ -13,8 +13,6 @@ const MoviesPage = () => {
 
   const query = searchParams.get('query') ?? '';
   const queryToLowerCase = query.toLowerCase();
-  const url = `/3/search/movie?query=${queryToLowerCase}&include_adult=false&language=en-US&page=1`;
-  console.log('query', `"${query}"`);
 
   useEffect(() => {
     if (query === '') {
@@ -26,7 +24,7 @@ const MoviesPage = () => {
         setData(null); //очищення списку
         setErrorActive(false);
 
-        const { results } = await fetchApi(url);
+        const { results } = await fetchSearchQuery(queryToLowerCase);
         if (results.length === 0) {
           setErrorActive(true);
           throw new Error('Not found');
@@ -38,7 +36,7 @@ const MoviesPage = () => {
       }
     };
     searchQuery();
-  }, [query, url]);
+  }, [query, queryToLowerCase]);
 
   const updateQueryString = inputValue => {
     const nextParams = inputValue !== '' ? { query: inputValue } : {};
