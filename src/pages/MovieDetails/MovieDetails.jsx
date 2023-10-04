@@ -4,6 +4,7 @@ import { fetchSingleCardData } from '../../serviceApi/themoviedbApi';
 import {
   BackToList,
   BackgroundImage,
+  Section,
   SubTitle,
   Title,
   WrapperContent,
@@ -109,13 +110,13 @@ const MovieDetailsPage = () => {
         )}
       </section>
 
-      <section>
+      <Section>
         <div className="container">
           <Suspense fallback={<p>Loading...</p>}>
             <Outlet />
           </Suspense>
         </div>
-      </section>
+      </Section>
     </main>
   );
 };

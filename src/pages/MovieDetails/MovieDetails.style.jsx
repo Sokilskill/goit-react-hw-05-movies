@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const Section = styled.section`
+  padding: git 30px 0;
+`;
+
 export const BackToList = styled.div`
   padding: 20px;
   > a {
